@@ -1,0 +1,292 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+  font-family: "tyn";
+  src: url("fonts/tyn.ttf") format("opentype");
+}
+@font-face {
+  font-family: "haVu";
+  src: url("fonts/haVu.TTF") format("opentype");
+}
+:root {
+  --heightHeader: 80px;
+  --textColor: #fff;
+  --textShadowColor: #0004;
+  --widthThumbnail: 150px;
+  --heightThumbnail: 220px;
+  --bottomPositionThumbnail: 50px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Poppins;
+}
+a {
+  text-decoration: none;
+  color: var(--textColor);
+}
+header {
+  width: 1140px;
+  max-width: 80%;
+  margin: auto;
+  height: var(--heightHeader);
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+header nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: 0 5px 10px var(--textShadowColor);
+}
+header nav .title {
+  font-family: "tyn", sans-serif;
+  letter-spacing: 2px;
+  font-size: 2rem;
+  color: var(--textColor);
+}
+header nav .nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  list-style-type: none;
+  font-size: 1rem;
+}
+.carousel {
+  height: 100vh;
+  margin-top: calc(var(--heightHeader) * -1);
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+.carousel .list .item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.carousel .list .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel .list .item .content {
+  font-family: "haVu", sans-serif;
+  position: absolute;
+  top: 20%;
+  width: 1140px;
+  max-width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-right: 30%;
+  color: var(--textColor);
+  text-shadow: 0 5px 10px var(--textShadowColor);
+}
+.carousel .list .item .title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+.carousel .list .item .name,
+.carousel .list .item .subName {
+  letter-spacing: 2px;
+  font-size: 7rem;
+  font-weight: bold;
+  line-height: 1.3em;
+  margin-bottom: 3rem;
+}
+
+.thumbnail {
+  position: absolute;
+  bottom: var(--bottomPositionThumbnail);
+  left: 50%;
+  width: max-content;
+  z-index: 100;
+  display: flex;
+  gap: 20px;
+}
+.thumbnail .item {
+  width: var(--widthThumbnail);
+  height: var(--heightThumbnail);
+  flex-shrink: 0;
+  position: relative;
+}
+.thumbnail .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.25rem;
+}
+.thumbnail .item .content {
+  color: #fff;
+  position: absolute;
+  bottom: 0.625rem;
+  left: 0.625rem;
+  right: 0.625rem;
+}
+.thumbnail .item .content .title {
+  font-weight: 500;
+  font-size: 0.75rem;
+  width: max-content;
+}
+
+.arrows {
+  position: absolute;
+  top: 80%;
+  right: 52%;
+  z-index: 100;
+  width: 300px;
+  max-width: 30%;
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+}
+.arrows button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #eee4;
+  border: none;
+  color: #fff;
+  font-family: monospace;
+  font-weight: bold;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.arrows button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.carousel .list .item:nth-child(1) {
+  z-index: 1;
+}
+
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .name,
+.carousel .list .item:nth-child(1) .content .subName {
+  transform: translateY(50px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.5s 1s linear 1 forwards;
+}
+@keyframes showContent {
+  to {
+    transform: translateY(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+.carousel .list .item:nth-child(1) .content .name {
+  animation-delay: 1.2s;
+}
+.carousel .list .item:nth-child(1) .content .subName {
+  animation-delay: 1.4s;
+}
+/* next ^^ */
+.carousel.next .list .item:nth-child(1) img {
+  width: var(--widthThumbnail);
+  height: var(--heightThumbnail);
+  position: absolute;
+  bottom: var(--bottomPositionThumbnail);
+  left: 50%;
+  border-radius: 1.25rem;
+  animation: showImage 0.5s linear 1 forwards;
+}
+@keyframes showImage {
+  to {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1) {
+  animation: showThumbnail 0.5s linear 1 forwards;
+}
+
+@keyframes showThumbnail {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+}
+.carousel.next .thumbnail {
+  animation: effectNext 0.5s linear 1 forwards;
+}
+
+@keyframes effectNext {
+  from {
+    transform: translateX(var(--widthThumbnail));
+  }
+}
+/* prev ^^ */
+.carousel.prev .list .item:nth-child(2) img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation: outFrame 0.5s linear 1 forwards;
+}
+@keyframes outFrame {
+  to {
+    width: var(--widthThumbnail);
+    height: var(--heightThumbnail);
+    bottom: var(--bottomPositionThumbnail);
+    left: 50%;
+    border-radius: 1.25rem;
+  }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1) {
+  animation: showThumbnail 0.5s linear 1 forwards;
+}
+.carousel.next .arrows div,
+.carousel.prev .arrows div {
+  cursor: not-allowed;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button {
+  pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) {
+  z-index: 2;
+}
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .name,
+.carousel.prev .list .item:nth-child(2) .content .subName {
+  animation: contentOut 1.5s linear 1 forwards !important;
+}
+
+@keyframes contentOut {
+  to {
+    transform: translateY(-150px);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  header nav .nav {
+    display: none;
+  }
+  .carousel .list .item img {
+    object-position: var(--w-mobile);
+  }
+  .carousel .list .item .title {
+    font-size: 0.75rem;
+  }
+  .carousel .list .item .name,
+  .carousel .list .item .subName {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+  .carousel .list .item .content {
+    padding-right: 0;
+  }
+}
